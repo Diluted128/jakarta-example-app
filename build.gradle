@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.9.1'
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    implementation('javax.persistence:javax.persistence-api:2.2')
+    implementation('org.apache.openjpa:openjpa-persistence-jdbc:3.0.0')
+    implementation( group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '4.0.2')
+    implementation(group: 'com.h2database', name: 'h2', version: '2.1.212')
+    compileOnly group: 'javax', name: 'javaee-api', version: '8.0'
+
+}
+
+test {
+    useJUnitPlatform()
+}
